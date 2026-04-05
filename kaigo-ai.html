@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareAI Support | 介護・医療向けAI導入支援サービス</title>
+  <meta name="description" content="介護・医療現場のDX化を専門家がトータルサポート。AIツール選定から導入・定着まで一貫してお任せください。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:        #00a191;
+      --teal-dark:   #007f73;
+      --teal-light:  #e0f5f3;
+      --teal-mid:    #77ddd5;
+      --yellow:      #fde300;
+      --yellow-light:#fffbe0;
+      --bg:          #f2f8f7;
+      --text:        #222222;
+      --text-sub:    #555555;
+      --white:       #ffffff;
+      --border:      #d0e8e5;
+      --radius:      12px;
+      --shadow:      0 4px 24px rgba(0,161,145,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    /* ====== HEADER ====== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(0,161,145,0.10);
+      z-index: 1000;
+      height: 72px;
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 40px; height: 40px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1.2;
+    }
+    .logo-text span {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--text-sub);
+      letter-spacing: 0.1em;
+    }
+    nav { display: flex; align-items: center; gap: 32px; }
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--teal); }
+    .header-cta {
+      background: var(--teal);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .header-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      margin-top: 72px;
+      background: linear-gradient(135deg, #e8f8f6 0%, #f2f8f7 50%, #fff9e0 100%);
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,161,145,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(253,227,0,0.10) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--yellow);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .hero-badge::before { content: none; }
+    .hero h1 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    .hero h1 .highlight {
+      position: relative;
+      color: var(--teal);
+    }
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 0; right: 0;
+      height: 8px;
+      background: rgba(253,227,0,0.6);
+      z-index: -1;
+    }
+    .hero-lead {
+      font-size: 16px;
+      color: var(--text-sub);
+      margin-bottom: 36px;
+      line-height: 1.9;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 16px rgba(0,161,145,0.30);
+    }
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,161,145,0.35); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--teal);
+      padding: 16px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      border: 2px solid var(--teal);
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover { background: var(--teal-light); transform: translateY(-2px); }
+
+    .hero-visual {
+      position: relative;
+    }
+    .hero-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 16px 8px;
+      background: var(--teal-light);
+      border-radius: 12px;
+    }
+    .stat-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .stat-unit { font-size: 14px; font-weight: 700; color: var(--teal); }
+    .stat-label { font-size: 11px; color: var(--text-sub); margin-top: 4px; }
+    .hero-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .hero-flow-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--bg);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .hero-flow-icon {
+      width: 32px; height: 32px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .hero-flow-icon i { font-size: 14px; color: var(--white); }
+
+    /* ====== SECTION BASE ====== */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding: 4px 14px;
+      background: var(--teal-light);
+      border-radius: 999px;
+    }
+    .section-title {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+    .section-lead {
+      font-size: 16px;
+      color: var(--text-sub);
+      max-width: 640px;
+      line-height: 1.9;
+    }
+    .section-header { margin-bottom: 56px; }
+
+    /* ====== PROBLEMS ====== */
+    .problems { background: var(--bg); }
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .problem-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--teal);
+    }
+    .problem-num {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--teal-light);
+      line-height: 1;
+      margin-bottom: 12px;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .problem-icon {
+      margin-bottom: 16px;
+      color: var(--teal);
+    }
+    .problem-icon i { font-size: 32px; }
+    .problem-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .problem-text { font-size: 14px; color: var(--text-sub); line-height: 1.8; }
+
+    .problems-cta {
+      text-align: center;
+      margin-top: 48px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+      border-radius: 20px;
+      color: var(--white);
+    }
+    .problems-cta h3 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .problems-cta p { font-size: 15px; opacity: 0.9; margin-bottom: 24px; }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--teal);
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ====== SERVICES ====== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      cursor: pointer;
+      text-align: center;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,161,145,0.15);
+      border-color: var(--teal-mid);
+    }
+    .service-icon-wrap {
+      width: 72px; height: 72px;
+      background: var(--teal-light);
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      transition: background 0.3s;
+    }
+    .service-icon-wrap i { font-size: 30px; color: var(--teal); transition: color 0.3s; }
+    .service-card:hover .service-icon-wrap { background: var(--teal); }
+    .service-card:hover .service-icon-wrap i { color: var(--white); }
+    .service-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .service-text {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .service-link {
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .service-link::after { content: '→'; }
+
+    /* ====== FEATURES ====== */
+    .features { background: var(--bg); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .feature-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .feature-num {
+      width: 48px; height: 48px;
+      background: var(--teal);
+      color: var(--white);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      flex-shrink: 0;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .feature-content h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .feature-content p {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+    .features-visual {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .compare-title {
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 24px;
+      color: var(--text-sub);
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13px;
+    }
+    .compare-table th {
+      padding: 12px 16px;
+      text-align: center;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .compare-table th:first-child { text-align: left; }
+    .compare-table th.ours {
+      background: var(--teal);
+      color: var(--white);
+      border-radius: 8px 8px 0 0;
+    }
+    .compare-table th.others {
+      background: #eee;
+      color: var(--text-sub);
+    }
+    .compare-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .compare-table td:not(:first-child) {
+      text-align: center;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .ours-col { background: rgba(0,161,145,0.05); }
+    .check { color: var(--teal); font-size: 18px; }
+    .cross { color: #ccc; font-size: 18px; }
+
+    /* ====== FLOW ====== */
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .flow-steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal-mid), var(--teal));
+      z-index: 0;
+    }
+    .flow-step {
+      text-align: center;
+      padding: 0 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-step-num {
+      width: 80px; height: 80px;
+      background: var(--white);
+      border: 3px solid var(--teal);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--teal);
+      font-family: 'Noto Serif JP', serif;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-step-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .flow-step-icon i { font-size: 26px; color: var(--teal); }
+    .flow-step h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .flow-step p {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* ====== CASES ====== */
+    .cases { background: var(--bg); }
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .case-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: transform 0.3s;
+    }
+    .case-card:hover { transform: translateY(-4px); }
+    .case-header {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+      padding: 24px;
+      color: var(--white);
+    }
+    .case-type {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+    .case-name {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .case-location {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+    .case-body { padding: 24px; }
+    .case-result {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--teal-light);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+    }
+    .case-result-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--teal);
+    }
+    .case-result-text { font-size: 13px; color: var(--text-sub); }
+    .case-quote {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.8;
+      font-style: italic;
+      border-left: 3px solid var(--teal);
+      padding-left: 14px;
+    }
+
+    /* ====== FAQ ====== */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-item {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    .faq-q:hover { background: var(--bg); }
+    .faq-q-mark {
+      width: 32px; height: 32px;
+      background: var(--teal);
+      color: var(--white);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .faq-arrow {
+      margin-left: auto;
+      transition: transform 0.3s;
+      color: var(--teal);
+      font-size: 18px;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px 72px;
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.9;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ====== CTA ====== */
+    .cta-section {
+      background: linear-gradient(135deg, #003d38 0%, var(--teal-dark) 40%, var(--teal) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 100px 24px;
+    }
+    .cta-section .section-tag {
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+    }
+    .cta-section .section-title { color: var(--white); }
+    .cta-section .section-lead { color: rgba(255,255,255,0.85); max-width: 560px; margin: 0 auto 40px; }
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-note {
+      margin-top: 20px;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+    .btn-yellow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--yellow);
+      color: var(--text);
+      padding: 18px 40px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 17px;
+      text-decoration: none;
+      transition: all 0.25s;
+      box-shadow: 0 4px 20px rgba(253,227,0,0.4);
+    }
+    .btn-yellow:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(253,227,0,0.5); }
+
+    /* ====== FOOTER ====== */
+    footer {
+      background: #1a2e2c;
+      color: rgba(255,255,255,0.7);
+      padding: 60px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo-text { color: var(--teal-mid); }
+    .footer-brand .logo-text span { color: rgba(255,255,255,0.5); }
+    .footer-desc {
+      font-size: 13px;
+      line-height: 1.9;
+      margin-top: 16px;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--teal-mid); }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 24px;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-links a:hover { color: var(--teal-mid); }
+
+    /* ====== FLOATING CTA ====== */
+    .floating-cta {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    .float-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      transition: all 0.25s;
+    }
+    .float-btn:hover { transform: translateX(-4px); }
+    .float-btn.tel {
+      background: var(--white);
+      color: var(--teal);
+      border: 2px solid var(--teal);
+    }
+    .float-btn.contact {
+      background: var(--teal);
+      color: var(--white);
+    }
+
+    /* ====== TRUST BAR ====== */
+    .trust-bar {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+    .trust-inner {
+      max-width: 820px; /* 3アイテム幅+ギャップ程度に抑えて3+2折り返しにする */
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px 48px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-sub);
+    }
+    .trust-item .icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--teal-light); border-radius: 8px; flex-shrink: 0; }
+    .trust-item .icon i { font-size: 15px; color: var(--teal); }
+
+    /* ====== MOBILE NAV ====== */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: 20px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .mobile-nav-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 32px;
+      cursor: pointer;
+      color: var(--text-sub);
+      background: none; border: none;
+    }
+
+    /* ====== GREETING ====== */
+    .greeting { background: var(--bg); }
+    .greeting-grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .greeting-img-wrap {
+      position: relative;
+    }
+    .greeting-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -16px; left: -16px;
+      right: 16px; bottom: 16px;
+      background: var(--teal-light);
+      border-radius: 24px;
+      z-index: 0;
+    }
+    .greeting-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; right: -8px;
+      width: 80px; height: 80px;
+      background: var(--yellow);
+      border-radius: 16px;
+      z-index: 0;
+    }
+    .greeting-img {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+      position: relative;
+      z-index: 1;
+      object-fit: cover;
+      aspect-ratio: 3 / 4;
+      box-shadow: 0 8px 32px rgba(0,161,145,0.15);
+    }
+    .greeting-name-card {
+      position: absolute;
+      bottom: 24px;
+      left: -20px;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 14px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      z-index: 2;
+      min-width: 180px;
+    }
+    .greeting-name-card .title {
+      font-size: 11px;
+      color: var(--teal);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+    .greeting-name-card .name {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .greeting-name-card .name-en {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-top: 2px;
+    }
+    .greeting-body { }
+    .greeting-tag {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+    .greeting-headline {
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 900;
+      line-height: 1.5;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+    .greeting-headline .em {
+      color: var(--teal);
+      position: relative;
+    }
+    .greeting-headline .em::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 0; right: 0;
+      height: 6px;
+      background: rgba(253,227,0,0.55);
+      z-index: -1;
+    }
+    .greeting-text {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 2;
+      margin-bottom: 16px;
+    }
+    .greeting-sig {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .greeting-sig-line {
+      width: 40px;
+      height: 3px;
+      background: var(--teal);
+      border-radius: 2px;
+    }
+    .greeting-sig-text {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .greeting-sig-text strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--text);
+      font-family: 'Noto Serif JP', serif;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 900px) {
+      .greeting-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .greeting-img-wrap {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ====== SCROLL ANIMATION ====== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 1024px) {
+      .hero-inner { gap: 32px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-steps { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      .flow-steps::before { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      /* Hero lead: remove manual breaks, compact font */
+      .hero-lead { font-size: 13px; line-height: 1.8; }
+      .hero-lead br { display: none; }
+      .hero h1 { font-size: 26px; }
+      .hero-badge { font-size: 12px; }
+      .problems-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .floating-cta { bottom: 16px; right: 16px; }
+      section { padding: 56px 16px; }
+      /* Trust bar: 2-col compact grid */
+      .trust-bar { padding: 12px 16px; }
+      .trust-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; justify-items: start; }
+      .trust-item { font-size: 12px; gap: 8px; }
+      .trust-item .icon { width: 26px; height: 26px; }
+      .trust-item .icon i { font-size: 12px; }
+      /* Compare table: compact */
+      .features-visual { padding: 20px 12px; }
+      .compare-table { font-size: 11px; }
+      .compare-table th { padding: 8px 5px; font-size: 10px; white-space: nowrap; }
+      .compare-table td { padding: 8px 5px; }
+      .compare-table td:first-child { font-size: 10px; }
+      .check { font-size: 15px; }
+      .cross { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">C</div>
+      <div class="logo-text">
+        CareAI Support
+        <span>介護・医療向けAI導入支援</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#services">サービス</a>
+      <a href="#features">選ばれる理由</a>
+      <a href="#flow">導入の流れ</a>
+      <a href="#cases">導入事例</a>
+      <a href="#greeting">代表挨拶</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#contact" class="header-cta">無料相談する</a>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileClose">✕</button>
+  <a href="#services" onclick="closeMobileNav()">サービス</a>
+  <a href="#features" onclick="closeMobileNav()">選ばれる理由</a>
+  <a href="#flow" onclick="closeMobileNav()">導入の流れ</a>
+  <a href="#cases" onclick="closeMobileNav()">導入事例</a>
+  <a href="#greeting" onclick="closeMobileNav()">代表挨拶</a>
+  <a href="#faq" onclick="closeMobileNav()">よくある質問</a>
+  <a href="#contact" onclick="closeMobileNav()" style="color:var(--teal);">無料相談する</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">介護・医療現場のDX化をトータルサポート</div>
+      <h1>
+        現場の<span class="highlight">業務負担</span>を<br>
+        AIで、もっと<span class="highlight">ラクに。</span>
+      </h1>
+      <p class="hero-lead">
+        記録・シフト・請求・コミュニケーション——煩雑な業務をAIが自動化し、スタッフが本来の「ケアの質」に集中できる環境をつくります。
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">📋 無料相談を予約する</a>
+        <a href="#cases" class="btn-secondary">📖 導入事例を見る</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">73<span class="stat-unit">%</span></div>
+            <div class="stat-label">記録業務削減</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">150<span class="stat-unit">+</span></div>
+            <div class="stat-label">支援施設数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">98<span class="stat-unit">%</span></div>
+            <div class="stat-label">継続率</div>
+          </div>
+        </div>
+        <div class="hero-flow">
+          <div class="hero-flow-item">
+            <div class="hero-flow-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <span>現場ヒアリング・課題整理（無料）</span>
+          </div>
+          <div class="hero-flow-item">
+            <div class="hero-flow-icon"><i class="fa-solid fa-robot"></i></div>
+            <span>最適なAIツールを選定・提案</span>
+          </div>
+          <div class="hero-flow-item">
+            <div class="hero-flow-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <span>導入・スタッフ研修・定着支援</span>
+          </div>
+          <div class="hero-flow-item">
+            <div class="hero-flow-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <span>継続的な効果測定・改善サポート</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="icon"><i class="fa-regular fa-hospital"></i></span>病院・クリニック対応</div>
+    <div class="trust-item"><span class="icon"><i class="fa-solid fa-house-medical"></i></span>介護施設・訪問介護対応</div>
+    <div class="trust-item"><span class="icon"><i class="fa-solid fa-shield-halved"></i></span>医療情報セキュリティ準拠</div>
+    <div class="trust-item"><span class="icon"><i class="fa-solid fa-user-nurse"></i></span>介護・医療資格者が監修</div>
+    <div class="trust-item"><span class="icon"><i class="fa-solid fa-headset"></i></span>導入後も専任担当が伴走</div>
+  </div>
+</div>
+
+<!-- PROBLEMS -->
+<section class="problems" id="problems">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">PROBLEMS</div>
+      <h2 class="section-title">こんなお悩みはありませんか？</h2>
+      <p class="section-lead">人手不足・記録負担・離職問題——現場が抱えるこれらの課題、AIで解決できます。</p>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card fade-in">
+        <div class="problem-icon"><i class="fa-solid fa-file-pen"></i></div>
+        <div class="problem-title">記録・書類作成に<br>毎日2〜3時間かかる</div>
+        <p class="problem-text">介護記録・看護記録・申送りなど、紙やExcelでの業務が残業の原因に。スタッフからも「もっとケアの時間が欲しい」という声が絶えない。</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="problem-icon"><i class="fa-regular fa-calendar"></i></div>
+        <div class="problem-title">シフト作成・人員調整が<br>担当者の大きな負担</div>
+        <p class="problem-text">急なシフト変更、資格要件の考慮、希望休の調整……毎月のシフト作成に何時間も費やしている。ミスがあれば現場が混乱する。</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="problem-icon"><i class="fa-solid fa-file-invoice"></i></div>
+        <div class="problem-title">介護報酬の請求業務が<br>複雑でミスが怖い</div>
+        <p class="problem-text">制度改正のたびに確認が必要な加算・算定。請求漏れや誤請求のリスクがあり、担当者が毎月プレッシャーを抱えている。</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="problem-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="problem-title">スタッフの離職率が高く<br>採用コストがかさむ</div>
+        <p class="problem-text">業務の煩雑さからくる疲弊が離職につながる悪循環。採用・育成コストが施設経営を圧迫している。</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="problem-icon"><i class="fa-regular fa-comments"></i></div>
+        <div class="problem-title">ご家族への連絡・報告が<br>抜け漏れしやすい</div>
+        <p class="problem-text">利用者様の状態変化を迅速にご家族へ伝えたいが、業務が立て込むと後回しに。クレームや信頼低下につながることも。</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="problem-icon"><i class="fa-regular fa-circle-question"></i></div>
+        <div class="problem-title">AIを導入したいが<br>何から始めればいいかわからない</div>
+        <p class="problem-text">「AIが良いとは聞くが、どのツールを選べばいい？」「ITに詳しい人がいない」「費用対効果が見えない」とお悩みの施設が多数。</p>
+      </div>
+    </div>
+    <div class="problems-cta fade-in">
+      <h3>その課題、すべてAIで解決できます</h3>
+      <p>まずは無料で現場の課題をヒアリング。最適な解決策をご提案します。</p>
+      <a href="#contact" class="btn-white">📋 無料相談を予約する →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">SERVICES</div>
+      <h2 class="section-title">サービス内容</h2>
+      <p class="section-lead">介護・医療現場に特化した6つの支援メニュー。現場のフェーズに合わせて、必要なところからご利用いただけます。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <div class="service-title">現場診断・課題可視化</div>
+        <p class="service-text">現場へのヒアリングと業務フロー分析で、AI導入の効果が最大化するポイントを特定。「どこから始めれば良いか」を明確にします。</p>
+        <a href="#contact" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap"><i class="fa-solid fa-robot"></i></div>
+        <div class="service-title">AIツール選定・比較提案</div>
+        <p class="service-text">100以上のAIツールから、施設の規模・予算・課題に合った最適解を中立的な立場でご提案。ベンダーに縛られない選定支援を提供します。</p>
+        <a href="#contact" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap"><i class="fa-regular fa-file-lines"></i></div>
+        <div class="service-title">AI記録支援の導入</div>
+        <p class="service-text">音声入力・自動文章生成・テンプレート化により、介護記録・看護記録の作成時間を最大70%削減。スタッフの残業削減に直結します。</p>
+        <a href="#contact" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap"><i class="fa-regular fa-calendar-check"></i></div>
+        <div class="service-title">AIシフト最適化支援</div>
+        <p class="service-text">スタッフの希望・資格・労働時間をAIが自動考慮してシフトを生成。管理者の負担を大幅削減しながら、公平で無理のないシフトを実現します。</p>
+        <a href="#contact" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="service-title">スタッフ研修・定着支援</div>
+        <p class="service-text">「ITが苦手」なスタッフも安心のハンズオン研修。導入後の定着率を高めるためのフォローアップ体制も充実しています。</p>
+        <a href="#contact" class="service-link">詳しく見る</a>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+        <div class="service-title">効果測定・継続改善</div>
+        <p class="service-text">導入後もKPIを定期測定し、PDCAサイクルで継続的に改善。「導入で終わり」にせず、現場の変化に合わせて伴走し続けます。</p>
+        <a href="#contact" class="service-link">詳しく見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">WHY CHOOSE US</div>
+      <h2 class="section-title">CareAI Supportが<br>選ばれる4つの理由</h2>
+    </div>
+    <div class="features-grid">
+      <div class="features-list">
+        <div class="feature-item fade-in">
+          <div class="feature-num">1</div>
+          <div class="feature-content">
+            <h3>介護・医療専門のAI支援チーム</h3>
+            <p>介護福祉士・看護師・医療情報技師など現場経験者がチームに在籍。現場の実情を知ったうえで、本当に使えるAI活用を提案します。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-in">
+          <div class="feature-num">2</div>
+          <div class="feature-content">
+            <h3>ベンダー中立の第三者視点</h3>
+            <p>特定のAIツールを売ることが目的ではありません。現場の課題と予算に最適なツールを中立的に選定・提案します。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-in">
+          <div class="feature-num">3</div>
+          <div class="feature-content">
+            <h3>医療情報セキュリティに完全対応</h3>
+            <p>個人情報・医療情報の取り扱いに厳格な基準を設定。HIPAA・医療法・個人情報保護法に準拠したセキュアな導入を実現します。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-in">
+          <div class="feature-num">4</div>
+          <div class="feature-content">
+            <h3>導入後の伴走サポートが充実</h3>
+            <p>「導入して終わり」にしません。定着・活用・改善まで専任担当者が継続的にサポートします。困ったときにすぐ聞ける安心感。</p>
+          </div>
+        </div>
+      </div>
+      <div class="features-visual fade-in">
+        <div class="compare-title">他社サービスとの比較</div>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="ours">CareAI<br>Support</th>
+              <th class="others">一般IT<br>コンサル</th>
+              <th class="others">AIツール<br>ベンダー</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>介護・医療専門知識</td>
+              <td class="ours-col"><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+            </tr>
+            <tr>
+              <td>ベンダー中立の提案</td>
+              <td class="ours-col"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+            </tr>
+            <tr>
+              <td>医療情報セキュリティ対応</td>
+              <td class="ours-col"><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+              <td>△</td>
+            </tr>
+            <tr>
+              <td>スタッフ研修・定着支援</td>
+              <td class="ours-col"><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+              <td>△</td>
+            </tr>
+            <tr>
+              <td>導入後の継続サポート</td>
+              <td class="ours-col"><span class="check">✓</span></td>
+              <td>△</td>
+              <td>△</td>
+            </tr>
+            <tr>
+              <td>初回相談無料</td>
+              <td class="ours-col"><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+              <td>△</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow">
+  <div class="section-inner">
+    <div class="section-header fade-in" style="text-align:center;">
+      <div class="section-tag">FLOW</div>
+      <h2 class="section-title">AI導入の流れ</h2>
+      <p class="section-lead" style="margin:0 auto;">お問い合わせから現場へのAI定着まで、ステップごとに丁寧にサポートします。</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step fade-in">
+        <div class="flow-step-num"><span class="flow-step-icon"><i class="fa-solid fa-phone"></i></span></div>
+        <h3>無料相談</h3>
+        <p>オンライン・電話で現場の状況や悩みをお聞きします。費用は一切かかりません。</p>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-step-num"><span class="flow-step-icon"><i class="fa-solid fa-magnifying-glass"></i></span></div>
+        <h3>現場ヒアリング</h3>
+        <p>業務フロー・人員体制・既存システムを詳しくヒアリングし、課題を整理します。</p>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-step-num"><span class="flow-step-icon"><i class="fa-regular fa-clipboard"></i></span></div>
+        <h3>AI導入提案</h3>
+        <p>最適なAIツールと導入ロードマップ、費用対効果の試算をご提案します。</p>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-step-num"><span class="flow-step-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span></div>
+        <h3>導入・研修</h3>
+        <p>ツールのセットアップからスタッフ研修まで、ハンズオンで丁寧にサポートします。</p>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-step-num"><span class="flow-step-icon"><i class="fa-solid fa-rotate"></i></span></div>
+        <h3>定着・改善</h3>
+        <p>効果を測定しながら継続的に改善。現場に合わせてカスタマイズを続けます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="cases" id="cases">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">CASE STUDIES</div>
+      <h2 class="section-title">導入事例</h2>
+      <p class="section-lead">全国150以上の施設・医療機関での導入実績から、一部をご紹介します。</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card fade-in">
+        <div class="case-header">
+          <div class="case-type">特別養護老人ホーム</div>
+          <div class="case-name">〇〇ホーム</div>
+          <div class="case-location">東京都 / 入居者80名 / スタッフ45名</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <div class="case-result-num">68%</div>
+            <div class="case-result-text">介護記録の<br>作成時間削減</div>
+          </div>
+          <p class="case-quote">「音声入力AIを導入してから、記録にかける時間が大幅に減りました。その分、利用者様と向き合う時間が増えてスタッフの満足度も上がっています。」</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-header">
+          <div class="case-type">訪問看護ステーション</div>
+          <div class="case-name">△△看護ステーション</div>
+          <div class="case-location">大阪府 / スタッフ28名</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <div class="case-result-num">40%</div>
+            <div class="case-result-text">残業時間の<br>削減</div>
+          </div>
+          <p class="case-quote">「AIシフト管理で、毎月3日かかっていたシフト作成が半日で完了するようになりました。スタッフの希望も通りやすくなり、離職率も下がりました。」</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-header">
+          <div class="case-type">内科クリニック</div>
+          <div class="case-name">◇◇内科クリニック</div>
+          <div class="case-location">愛知県 / 医師3名 / スタッフ12名</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <div class="case-result-num">55%</div>
+            <div class="case-result-text">カルテ入力時間の<br>削減</div>
+          </div>
+          <p class="case-quote">「診察しながら音声でAIがカルテを自動生成してくれる。最初は不安でしたが、精度が高く今では欠かせないツールです。患者さんと向き合う時間が増えました。」</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GREETING -->
+<section class="greeting" id="greeting">
+  <div class="section-inner">
+    <div class="greeting-grid">
+      <div class="greeting-img-wrap fade-in">
+        <img
+          src="image/Gemini_Generated_Image_ryn5otryn5otryn5.png"
+          alt="代表取締役 田中 誠一郎"
+          class="greeting-img"
+        >
+        <div class="greeting-name-card">
+          <div class="title">代表取締役CEO</div>
+          <div class="name">田中 誠一郎</div>
+          <div class="name-en">Seiichiro Tanaka</div>
+        </div>
+      </div>
+      <div class="greeting-body fade-in">
+        <div class="greeting-tag">代表挨拶</div>
+        <h2 class="greeting-headline">
+          「テクノロジーで、<br>
+          <span class="em">ケアする人を守る</span>。」<br>
+          それが私たちの使命です。
+        </h2>
+        <p class="greeting-text">
+          私はかつて、訪問介護の現場で働いていました。夜遅くまで記録と格闘し、シフト調整に追われ、本当に大切な「利用者様との時間」が削られていく現実を身をもって経験しました。
+        </p>
+        <p class="greeting-text">
+          「このままではいけない」——その思いからCareAI Supportを立ち上げました。AIは難しい技術ではなく、現場のスタッフを助けるための道具です。しかし、介護・医療の現場特有の複雑さを知らずに導入しても、うまくいかないことが多い。だからこそ、私たちのような現場経験者が伴走する意味があると信じています。
+        </p>
+        <p class="greeting-text">
+          「ITが苦手」「時間がない」「何から始めればいいかわからない」——そんな施設の皆様こそ、ぜひ一度、気軽にお声がけください。現場を知るチームが、必ず力になります。
+        </p>
+        <div class="greeting-sig">
+          <div class="greeting-sig-line"></div>
+          <div class="greeting-sig-text">
+            <strong>田中 誠一郎</strong>
+            CareAI Support株式会社 代表取締役CEO
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-header fade-in" style="text-align:center;">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">よくあるご質問</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-q-mark">Q</div>
+          <span>ITに不慣れなスタッフが多いですが、使いこなせますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">はい、ご安心ください。スタッフの方々のITリテラシーに合わせた研修プログラムをご用意しています。現場に合わせた段階的な導入と、繰り返しのフォローアップで定着をサポートします。実際、「ITが得意な人がいない施設」での導入実績が多数あります。</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-q-mark">Q</div>
+          <span>個人情報・医療情報のセキュリティは大丈夫ですか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">セキュリティを最優先に設計しています。ご提案するすべてのAIツールは、医療情報の取り扱い基準・個人情報保護法・各省庁のガイドラインに準拠したものに限定しています。また、データの保管場所・暗号化・アクセス制御についても詳しくご説明します。</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-q-mark">Q</div>
+          <span>費用はどのくらいかかりますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">初回のご相談・現場診断は無料です。導入支援の費用は施設の規模・導入するツール・サポートの範囲によって異なります。まずは無料相談で現状をお聞きし、費用対効果の試算とともにお見積りをご提示します。小規模施設でも無理のないプランをご用意しています。</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-q-mark">Q</div>
+          <span>既存のシステム（介護ソフト等）と連携できますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">現在ご利用中のシステムへの影響を最小限に抑えながら導入できるよう設計します。主要な介護ソフト・電子カルテとのAPI連携・データ連携の実績が多数あります。現行システムのご確認後、最適な連携方法をご提案します。</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-q-mark">Q</div>
+          <span>導入にどのくらいの期間がかかりますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">最短で初回相談から4〜6週間での運用開始が可能です。ただし、施設の規模や導入するツールの範囲によって異なります。段階的な導入（まず記録業務だけAI化するなど）も柔軟に対応しています。急を要する場合はご相談ください。</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-q-mark">Q</div>
+          <span>導入後のサポートはありますか？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">はい、充実した導入後サポートをご用意しています。専任の担当者がつき、定期的な効果測定・改善提案・スタッフからの質問対応を継続して行います。「導入して終わり」にならないことが、私たちの強みです。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-inner">
+    <div class="section-tag">CONTACT</div>
+    <h2 class="section-title" style="margin-bottom:16px;">まずは無料相談から<br>はじめましょう</h2>
+    <p class="section-lead">現場の課題をお聞きし、AIで解決できるかどうかを率直にお伝えします。<br>売り込みは一切しません。まずはお気軽にご相談ください。</p>
+    <div class="cta-buttons">
+      <a href="tel:0120-xxx-xxx" class="btn-white">📞 0120-XXX-XXX（平日 9:00〜18:00）</a>
+      <a href="#" class="btn-yellow">📋 無料相談フォームへ →</a>
+    </div>
+    <p class="cta-note">※ 相談・ヒアリングは完全無料です。しつこい営業は行いません。</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark">C</div>
+          <div class="logo-text">
+            CareAI Support
+            <span>介護・医療向けAI導入支援</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          介護・医療現場に特化したAI導入支援サービス。<br>
+          現場経験者と技術の専門家が連携し、<br>
+          真に現場で使えるDX化を実現します。
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="#">現場診断・課題可視化</a></li>
+          <li><a href="#">AIツール選定支援</a></li>
+          <li><a href="#">AI記録支援の導入</a></li>
+          <li><a href="#">AIシフト最適化</a></li>
+          <li><a href="#">スタッフ研修</a></li>
+          <li><a href="#">効果測定・改善</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>対応施設</h4>
+        <ul>
+          <li><a href="#">特別養護老人ホーム</a></li>
+          <li><a href="#">介護老人保健施設</a></li>
+          <li><a href="#">グループホーム</a></li>
+          <li><a href="#">訪問介護・看護</a></li>
+          <li><a href="#">病院・クリニック</a></li>
+          <li><a href="#">デイサービス</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>会社情報</h4>
+        <ul>
+          <li><a href="#">会社概要</a></li>
+          <li><a href="#">チーム紹介</a></li>
+          <li><a href="#">導入事例</a></li>
+          <li><a href="#">ブログ・コラム</a></li>
+          <li><a href="#">プライバシーポリシー</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2024 CareAI Support. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">利用規約</a>
+        <a href="#">特定商取引法に基づく表記</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta">
+  <a href="tel:0120-xxx-xxx" class="float-btn tel">📞 お電話でのご相談</a>
+  <a href="#contact" class="float-btn contact">📋 無料相談を予約</a>
+</div>
+
+<script>
+  // ====== HAMBURGER MENU ======
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.add('open');
+  });
+  mobileClose.addEventListener('click', closeMobileNav);
+
+  function closeMobileNav() {
+    mobileNav.classList.remove('open');
+  }
+
+  // ====== FAQ ACCORDION ======
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ====== SCROLL ANIMATION ======
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * (Array.from(entry.target.parentElement.children).indexOf(entry.target)));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ====== SMOOTH HEADER SCROLL ======
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      header.style.boxShadow = '0 4px 32px rgba(0,161,145,0.15)';
+    } else {
+      header.style.boxShadow = '0 2px 16px rgba(0,161,145,0.10)';
+    }
+  });
+</script>
+</body>
+</html>
